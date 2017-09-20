@@ -19,9 +19,17 @@ class FruitNewGamePage extends eui.Component {
     public gameScore;
     public gameBestScore;
 
+    private gameContainer: GameContainer;
+
     private init () {
         // 添加初始动画
         this.addEffects();
+
+        // 添加游戏容器
+        this.gameContainer = new GameContainer();
+        this.gameContainer.width = this.width;
+        this.gameContainer.height = this.height;
+        this.addChild(this.gameContainer);
     }
 
     // 添加初始动画
