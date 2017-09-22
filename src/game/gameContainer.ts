@@ -21,11 +21,5 @@ class GameContainer extends egret.DisplayObjectContainer {
             fruitArray.push(fruitIns);
             this.addChild(fruitIns);
         }
-
-        //var fruitIns = new Apple();
-        //this.addChild(fruitIns);
-        
-        
-        //console.log(fruitIns);
     }
 }

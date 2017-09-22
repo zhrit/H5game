@@ -32,9 +32,6 @@ var GameContainer = (function (_super) {
             fruitArray.push(fruitIns);
             this.addChild(fruitIns);
         }
-        //var fruitIns = new Apple();
-        //this.addChild(fruitIns);
-        //console.log(fruitIns);
     };
     return GameContainer;
 }(egret.DisplayObjectContainer));

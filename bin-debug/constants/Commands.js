@@ -14,6 +14,10 @@ var Commands = (function () {
     Commands.CLOSE_NEWGAME = 'close_newgame';
     Commands.CLOSE_JODO = 'close_jodo';
     Commands.CLOSE_QUIT = 'close_quit';
+    // 游戏逻辑
+    Commands.ADD_SCORE = 'add_score';
+    Commands.ADD_FAILED = 'add_failed';
+    Commands.GAME_OVER = 'game_over';
     return Commands;
 }());
 __reflect(Commands.prototype, "Commands");

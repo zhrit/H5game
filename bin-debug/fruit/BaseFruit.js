@@ -34,6 +34,8 @@ var BaseFruit = (function (_super) {
         this.y = this.initY = 530;
         this.addEventListener(egret.Event.ENTER_FRAME, this.freeFalling, this);
         this.beginTime = egret.getTimer();
+        this.touchEnabled = true;
+        this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.cutFruit, this);
     };
     BaseFruit.prototype.freeFalling = function (evt) {
         var now = (egret.getTimer() - this.beginTime) / 1000;
@@ -46,6 +48,28 @@ var BaseFruit = (function (_super) {
         this.height = this.img.height;
         this.anchorOffsetX = this.width / 2;
         this.anchorOffsetY = this.height / 2;
+    };
+    BaseFruit.prototype.cutFruit = function () {
+        this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.cutFruit, this);
+        this.splitEffect();
+        this.addScore();
+    };
+    BaseFruit.prototype.splitEffect = function () {
+        var splitBitmap = new egret.Bitmap();
+        splitBitmap.texture = RES.getRes("flash_png");
+        splitBitmap.anchorOffsetX = splitBitmap.width / 2;
+        splitBitmap.anchorOffsetY = splitBitmap.height / 2;
+        splitBitmap.x = this.x;
+        splitBitmap.y = this.y;
+        splitBitmap.alpha = 0;
+        this.parent.addChild(splitBitmap);
+        egret.Tween.get(splitBitmap).to({ alpha: 1 }, 100).to({ alpha: 0 }, 100).call(function () {
+            this.parent.removeChild(splitBitmap);
+            splitBitmap = null;
+        }, this);
+    };
+    BaseFruit.prototype.addScore = function () {
+        Observer.getInstance().fire(Commands.ADD_SCORE);
     };
     return BaseFruit;
 }(egret.DisplayObjectContainer));

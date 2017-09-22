@@ -25,11 +25,15 @@ var FruitNewGamePage = (function (_super) {
     FruitNewGamePage.prototype.init = function () {
         // 添加初始动画
         this.addEffects();
+        // 初始化数据
+        this.scoreCount = this.failedCount = 0;
         // 添加游戏容器
         this.gameContainer = new GameContainer();
         this.gameContainer.width = this.width;
         this.gameContainer.height = this.height;
         this.addChild(this.gameContainer);
+        // 启动游戏管理器
+        this.gameManeger = new GameManager();
     };
     // 添加初始动画
     FruitNewGamePage.prototype.addEffects = function () {

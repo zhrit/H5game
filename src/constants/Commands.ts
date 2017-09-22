@@ -12,4 +12,9 @@ class Commands {
     public static CLOSE_NEWGAME: string = 'close_newgame';
     public static CLOSE_JODO: string = 'close_jodo';
     public static CLOSE_QUIT: string = 'close_quit';
+
+    // 游戏逻辑
+    public static ADD_SCORE = 'add_score';
+    public static ADD_FAILED = 'add_failed';
+    public static GAME_OVER = 'game_over';
 }

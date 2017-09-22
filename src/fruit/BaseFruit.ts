@@ -40,6 +40,9 @@ class BaseFruit extends egret.DisplayObjectContainer {
         this.addEventListener(egret.Event.ENTER_FRAME,this.freeFalling,this);
 
         this.beginTime = egret.getTimer();
+
+        this.touchEnabled = true;
+        this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.cutFruit, this);
     }
 
     private freeFalling (evt: egret.Event) {
@@ -54,5 +57,32 @@ class BaseFruit extends egret.DisplayObjectContainer {
         this.height = this.img.height;
         this.anchorOffsetX = this.width / 2;
         this.anchorOffsetY = this.height / 2;
+    }
+
+    private cutFruit () {
+        this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.cutFruit, this);
+
+        this.splitEffect();
+
+        this.addScore();
+    }
+
+    private splitEffect () {
+        var splitBitmap: egret.Bitmap = new egret.Bitmap ();
+        splitBitmap.texture = RES.getRes("flash_png");
+        splitBitmap.anchorOffsetX = splitBitmap.width / 2;
+        splitBitmap.anchorOffsetY = splitBitmap.height / 2;
+        splitBitmap.x = this.x;
+        splitBitmap.y = this.y;
+        splitBitmap.alpha = 0;
+        this.parent.addChild(splitBitmap);
+        egret.Tween.get(splitBitmap).to({alpha: 1}, 100).to({alpha: 0}, 100).call(function () {
+            this.parent.removeChild(splitBitmap);
+            splitBitmap = null;
+        }, this);
+    }
+
+    private addScore () {
+        Observer.getInstance().fire(Commands.ADD_SCORE);
     }
 }
