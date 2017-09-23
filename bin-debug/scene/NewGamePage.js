@@ -28,7 +28,7 @@ var FruitNewGamePage = (function (_super) {
         // 初始化数据
         this.scoreCount = this.failedCount = 0;
         // 添加游戏容器
-        this.gameContainer = new GameContainer();
+        this.gameContainer = GameContainer.getInstance();
         this.gameContainer.width = this.width;
         this.gameContainer.height = this.height;
         this.addChild(this.gameContainer);

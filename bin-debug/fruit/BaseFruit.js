@@ -36,12 +36,17 @@ var BaseFruit = (function (_super) {
         this.beginTime = egret.getTimer();
         this.touchEnabled = true;
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.cutFruit, this);
+        this.cutIndex = false;
     };
     BaseFruit.prototype.freeFalling = function (evt) {
         var now = (egret.getTimer() - this.beginTime) / 1000;
         this.x = this.initX + now * this.speedX;
         this.y = this.speedY * now + 0.5 * this.accelerateY * now * now + this.initY;
         this.rotation = now * this.speedRotate;
+        if (this.y > 530 && !this.cutIndex) {
+            this.addFailed();
+            this.cutIndex = true;
+        }
     };
     BaseFruit.prototype.setSize = function () {
         this.width = this.img.width;
@@ -51,6 +56,7 @@ var BaseFruit = (function (_super) {
     };
     BaseFruit.prototype.cutFruit = function () {
         this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.cutFruit, this);
+        this.cutIndex = true;
         this.splitEffect();
         this.addScore();
     };
@@ -70,6 +76,9 @@ var BaseFruit = (function (_super) {
     };
     BaseFruit.prototype.addScore = function () {
         Observer.getInstance().fire(Commands.ADD_SCORE);
+    };
+    BaseFruit.prototype.addFailed = function () {
+        Observer.getInstance().fire(Commands.ADD_FAILED);
     };
     return BaseFruit;
 }(egret.DisplayObjectContainer));

@@ -23,6 +23,9 @@ class BaseFruit extends egret.DisplayObjectContainer {
     // 初始位置
     public initX: number;
     public initY: number;
+
+    // 是否切开标志
+    public cutIndex: boolean;
     private init () {
         this.img = new egret.Bitmap();
         this.addChild(this.img);
@@ -43,6 +46,8 @@ class BaseFruit extends egret.DisplayObjectContainer {
 
         this.touchEnabled = true;
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.cutFruit, this);
+
+        this.cutIndex = false;
     }
 
     private freeFalling (evt: egret.Event) {
@@ -50,6 +55,10 @@ class BaseFruit extends egret.DisplayObjectContainer {
         this.x = this.initX + now * this.speedX;
         this.y = this.speedY * now + 0.5 * this.accelerateY * now * now + this.initY;
         this.rotation = now * this.speedRotate;
+        if (this.y > 530 && !this.cutIndex) {
+            this.addFailed();
+            this.cutIndex = true;
+        }
     }
 
     public setSize () {
@@ -61,6 +70,8 @@ class BaseFruit extends egret.DisplayObjectContainer {
 
     private cutFruit () {
         this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.cutFruit, this);
+
+        this.cutIndex = true;
 
         this.splitEffect();
 
@@ -84,5 +95,9 @@ class BaseFruit extends egret.DisplayObjectContainer {
 
     private addScore () {
         Observer.getInstance().fire(Commands.ADD_SCORE);
+    }
+
+    private addFailed () {
+        Observer.getInstance().fire(Commands.ADD_FAILED);
     }
 }

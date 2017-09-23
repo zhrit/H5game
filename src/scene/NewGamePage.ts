@@ -15,6 +15,10 @@ class FruitNewGamePage extends eui.Component {
     public gameXX;
     public gameXXX;
 
+    public gameXF;
+    public gameXXF;
+    public gameXXXF;
+
     public gameScoreIcon;
     public gameScore;
     public gameBestScore;
@@ -34,7 +38,7 @@ class FruitNewGamePage extends eui.Component {
         this.scoreCount = this.failedCount = 0;
 
         // 添加游戏容器
-        this.gameContainer = new GameContainer();
+        this.gameContainer = GameContainer.getInstance();
         this.gameContainer.width = this.width;
         this.gameContainer.height = this.height;
         this.addChild(this.gameContainer);

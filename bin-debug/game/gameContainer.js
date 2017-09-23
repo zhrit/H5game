@@ -18,7 +18,7 @@ var GameContainer = (function (_super) {
     __extends(GameContainer, _super);
     function GameContainer() {
         var _this = _super.call(this) || this;
-        _this.timer = new egret.Timer(2000, 0);
+        _this.timer = new egret.Timer(2100, 0);
         _this.timer.addEventListener(egret.TimerEvent.TIMER, _this.popupFruit, _this);
         _this.timer.start();
         return _this;
@@ -32,6 +32,15 @@ var GameContainer = (function (_super) {
             fruitArray.push(fruitIns);
             this.addChild(fruitIns);
         }
+    };
+    GameContainer.getInstance = function () {
+        if (this._instance === undefined) {
+            this._instance = new GameContainer();
+        }
+        return this._instance;
+    };
+    GameContainer.destroyInstance = function () {
+        this._instance = undefined;
     };
     return GameContainer;
 }(egret.DisplayObjectContainer));
