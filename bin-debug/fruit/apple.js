@@ -19,6 +19,10 @@ var Apple = (function (_super) {
     function Apple() {
         var _this = _super.call(this) || this;
         _this.img.texture = RES.getRes("apple_png");
+        _this.img_part1.texture = RES.getRes("apple-1_png");
+        _this.img_part2.texture = RES.getRes("apple-2_png");
+        _this.initRotation = -45;
+        _this.rotationIndex = 0;
         _this.setSize();
         return _this;
     }

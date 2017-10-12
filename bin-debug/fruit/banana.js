@@ -19,6 +19,10 @@ var Banana = (function (_super) {
     function Banana() {
         var _this = _super.call(this) || this;
         _this.img.texture = RES.getRes("banana_png");
+        _this.img_part1.texture = RES.getRes("banana-2_png");
+        _this.img_part2.texture = RES.getRes("banana-1_png");
+        _this.initRotation = 90;
+        _this.rotationIndex = 1;
         _this.setSize();
         return _this;
     }

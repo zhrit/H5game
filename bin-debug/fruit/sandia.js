@@ -19,6 +19,10 @@ var Sandia = (function (_super) {
     function Sandia() {
         var _this = _super.call(this) || this;
         _this.img.texture = RES.getRes("sandia_png");
+        _this.img_part1.texture = RES.getRes("sandia-1_png");
+        _this.img_part2.texture = RES.getRes("sandia-2_png");
+        _this.initRotation = 85;
+        _this.rotationIndex = 1;
         _this.setSize();
         return _this;
     }

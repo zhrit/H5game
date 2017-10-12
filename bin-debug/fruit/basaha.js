@@ -19,6 +19,10 @@ var Basaha = (function (_super) {
     function Basaha() {
         var _this = _super.call(this) || this;
         _this.img.texture = RES.getRes("basaha_png");
+        _this.img_part1.texture = RES.getRes("basaha-1_png");
+        _this.img_part2.texture = RES.getRes("basaha-2_png");
+        _this.initRotation = 45;
+        _this.rotationIndex = 1;
         _this.setSize();
         return _this;
     }

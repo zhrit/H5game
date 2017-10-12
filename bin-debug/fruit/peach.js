@@ -19,6 +19,10 @@ var Peach = (function (_super) {
     function Peach() {
         var _this = _super.call(this) || this;
         _this.img.texture = RES.getRes("peach_png");
+        _this.img_part1.texture = RES.getRes("peach-1_png");
+        _this.img_part2.texture = RES.getRes("peach-2_png");
+        _this.initRotation = -45;
+        _this.rotationIndex = 0;
         _this.setSize();
         return _this;
     }
