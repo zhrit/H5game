@@ -57,7 +57,7 @@ class BaseFruit extends egret.DisplayObjectContainer {
         this.cutIndex = false;
     }
 
-    private freeFalling (evt: egret.Event) {
+    public freeFalling (evt: egret.Event) {
         var now = (egret.getTimer() - this.beginTime) / 1000;
         this.x = this.initX + now * this.speedX;
         this.y = this.speedY * now + 0.5 * this.accelerateY * now * now + this.initY;
@@ -127,7 +127,7 @@ class BaseFruit extends egret.DisplayObjectContainer {
         Observer.getInstance().fire(Commands.ADD_SCORE);
     }
 
-    private addFailed () {
+    public addFailed () {
         Observer.getInstance().fire(Commands.ADD_FAILED);
     }
 }

@@ -65,6 +65,9 @@ var GameContainer = (function (_super) {
         this.prePointY = evt.stageY;
     };
     GameContainer.prototype.setSplitRotation = function (curX, curY, fruit) {
+        if (!fruit.splitBitmap) {
+            return;
+        }
         if (this.prePointX == -1) {
             fruit.splitBitmap.rotation = 0;
         }

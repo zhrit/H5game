@@ -46,7 +46,7 @@ class GameContainer extends egret.DisplayObjectContainer {
 
     private prePointX: number = -1;
     private prePointY: number = -1;
-    private collideDetection (evt: egret.TouchEvent) {
+    public collideDetection (evt: egret.TouchEvent) {
         for (var i = 0; i < this.fruitNum; i++) {
             if (!this.fruitArray[i].cutIndex) {
                 var isCollid = this.fruitArray[i].hitTestPoint(evt.stageX, evt.stageY, true);
@@ -61,6 +61,9 @@ class GameContainer extends egret.DisplayObjectContainer {
     }
 
     private setSplitRotation(curX, curY, fruit) {
+        if (!fruit.splitBitmap) {
+            return;
+        }
         if (this.prePointX == -1) {
             fruit.splitBitmap.rotation = 0;
         } else if (this.prePointX == curX) {

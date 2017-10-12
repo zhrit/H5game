@@ -22,6 +22,16 @@ var Boom = (function (_super) {
         _this.setSize();
         return _this;
     }
+    Boom.prototype.addFailed = function () { };
+    Boom.prototype.cutFruit = function () {
+        this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.cutFruit, this);
+        this.cutIndex = true;
+        var gameContainer = GameContainer.getInstance();
+        gameContainer.timer.stop();
+        gameContainer.parent.removeEventListener(egret.TouchEvent.TOUCH_MOVE, gameContainer.collideDetection, gameContainer);
+        this.removeEventListener(egret.Event.ENTER_FRAME, this.freeFalling, this);
+        Observer.getInstance().fire(Commands.GAME_OVER);
+    };
     return Boom;
 }(BaseFruit));
 __reflect(Boom.prototype, "Boom");
