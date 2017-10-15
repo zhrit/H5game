@@ -10,18 +10,19 @@
 	],
 	"game": [
 		"bin-debug/fruit/BaseFruit.js",
-		"bin-debug/scene/QuitPage.js",
+		"bin-debug/LoadingUI.js",
 		"bin-debug/Main.js",
 		"bin-debug/ThemeAdapter.js",
 		"bin-debug/constants/ClassName.js",
 		"bin-debug/constants/Commands.js",
+		"bin-debug/effects/BoomEffect.js",
 		"bin-debug/effects/Effects.js",
 		"bin-debug/effects/Scar.js",
 		"bin-debug/effects/Sparkle.js",
 		"bin-debug/fruit/apple.js",
 		"bin-debug/fruit/banana.js",
 		"bin-debug/fruit/basaha.js",
-		"bin-debug/AssetAdapter.js",
+		"bin-debug/scene/QuitPage.js",
 		"bin-debug/fruit/boom.js",
 		"bin-debug/fruit/peach.js",
 		"bin-debug/fruit/sandia.js",
@@ -33,6 +34,6 @@
 		"bin-debug/scene/HomePage.js",
 		"bin-debug/scene/JodoPage.js",
 		"bin-debug/scene/NewGamePage.js",
-		"bin-debug/LoadingUI.js"
+		"bin-debug/AssetAdapter.js"
 	]
 }

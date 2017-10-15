@@ -128,6 +128,19 @@ class BaseFruit extends egret.DisplayObjectContainer {
     }
 
     public addFailed () {
+        var self = this;
+        var loseLogo: egret.Bitmap = new egret.Bitmap();
+        loseLogo.texture = RES.getRes('lose_png');
+        loseLogo.anchorOffsetX = loseLogo.width / 2;
+        loseLogo.anchorOffsetY = loseLogo.height / 2;
+        loseLogo.scaleX = 0;
+        loseLogo.scaleY = 0;
+        loseLogo.x = this.x - this.width / 2;
+        loseLogo.y = 430;
+        this.parent.addChild(loseLogo);
+        var tw_loseLogo = egret.Tween.get(loseLogo).to({scaleX: 1.1, scaleY: 1.1}, 600, egret.Ease.backOut).wait(600).call(function(){
+            self.parent.removeChild(loseLogo);
+        });
         Observer.getInstance().fire(Commands.ADD_FAILED);
     }
 }
