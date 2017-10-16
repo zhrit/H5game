@@ -11,6 +11,8 @@ class Apple extends BaseFruit {
         this.initRotation = -45;
         this.rotationIndex = 0;
 
+        this.splashColor = 0x87c310;
+
         this.setSize();
     }
 }

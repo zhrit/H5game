@@ -23,6 +23,7 @@ var Banana = (function (_super) {
         _this.img_part2.texture = RES.getRes("banana-1_png");
         _this.initRotation = 90;
         _this.rotationIndex = 1;
+        _this.splashColor = null;
         _this.setSize();
         return _this;
     }

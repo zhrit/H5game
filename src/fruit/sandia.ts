@@ -11,6 +11,8 @@ class Sandia extends BaseFruit {
         this.initRotation = 85;
         this.rotationIndex = 1;
 
+        this.splashColor = 0xff0000;
+
         this.setSize();
     }
 }

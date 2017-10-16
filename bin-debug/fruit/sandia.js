@@ -23,6 +23,7 @@ var Sandia = (function (_super) {
         _this.img_part2.texture = RES.getRes("sandia-2_png");
         _this.initRotation = 85;
         _this.rotationIndex = 1;
+        _this.splashColor = 0xff0000;
         _this.setSize();
         return _this;
     }

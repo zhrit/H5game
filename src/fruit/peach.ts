@@ -11,6 +11,8 @@ class Peach extends BaseFruit {
         this.initRotation = -45;
         this.rotationIndex = 0;
 
+        this.splashColor = 0xf8860d;
+
         this.setSize();
     }
 }

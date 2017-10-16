@@ -11,6 +11,8 @@ class Banana extends BaseFruit {
         this.initRotation = 90;
         this.rotationIndex = 1;
 
+        this.splashColor = null;
+
         this.setSize();
     }
 }

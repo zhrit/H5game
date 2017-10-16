@@ -65,6 +65,7 @@ var BaseFruit = (function (_super) {
         this.cutIndex = true;
         this.splitEffect();
         this.cutEffect();
+        this.splashEffectFun();
         this.addScore();
     };
     BaseFruit.prototype.splitEffect = function () {
@@ -88,6 +89,17 @@ var BaseFruit = (function (_super) {
         this.addChild(this.img_part1);
         this.addChild(this.img_part2);
         this.addEventListener(egret.Event.ENTER_FRAME, this.cutFreeFalling, this);
+    };
+    BaseFruit.prototype.splashEffectFun = function () {
+        if (this.splashColor) {
+            this.splashEffect = new SplashEffect(this.splashColor);
+            var initX = this.splashEffect.x = this.x - 35;
+            var initY = this.splashEffect.y = this.y - 35;
+            this.parent.addChild(this.splashEffect);
+            egret.setTimeout(function () {
+                this.parent.removeChild(this.splashEffect);
+            }, this, 400);
+        }
     };
     BaseFruit.prototype.cutFreeFalling = function () {
         this.img_part1.x -= 2;

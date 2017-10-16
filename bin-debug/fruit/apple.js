@@ -23,6 +23,7 @@ var Apple = (function (_super) {
         _this.img_part2.texture = RES.getRes("apple-2_png");
         _this.initRotation = -45;
         _this.rotationIndex = 0;
+        _this.splashColor = 0x87c310;
         _this.setSize();
         return _this;
     }

@@ -24,10 +24,14 @@ class BaseFruit extends egret.DisplayObjectContainer {
 
     // 初始时间
     public beginTime;
+    public beginTimeSplash;
+    public splashEffect;
 
     // 初始位置
     public initX: number;
     public initY: number;
+
+    public splashColor;
 
     // 是否切开标志
     public cutIndex: boolean;
@@ -87,6 +91,8 @@ class BaseFruit extends egret.DisplayObjectContainer {
         this.splitEffect();
 
         this.cutEffect();
+        
+        this.splashEffectFun();
 
         this.addScore();
     }
@@ -114,6 +120,18 @@ class BaseFruit extends egret.DisplayObjectContainer {
         this.addChild(this.img_part1);
         this.addChild(this.img_part2);
         this.addEventListener(egret.Event.ENTER_FRAME,this.cutFreeFalling,this);
+    }
+
+    private splashEffectFun() {
+        if (this.splashColor){
+            this.splashEffect = new SplashEffect(this.splashColor);
+            var initX = this.splashEffect.x = this.x - 35;
+            var initY = this.splashEffect.y = this.y - 35;
+            this.parent.addChild(this.splashEffect);
+            egret.setTimeout(function () {
+                this.parent.removeChild(this.splashEffect);
+            }, this, 400);
+        }
     }
 
     private cutFreeFalling () {
