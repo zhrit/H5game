@@ -30,6 +30,7 @@ class GameContainer extends egret.DisplayObjectContainer {
         egret.setTimeout(function() {
             this.parent.touchEnabled = true;
             this.parent.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.collideDetection, this);
+            this.parent.addEventListener(egret.TouchEvent.TOUCH_END, this.moveEnd, this);
         }, this, 2100);
     }
 
@@ -46,7 +47,39 @@ class GameContainer extends egret.DisplayObjectContainer {
 
     private prePointX: number = -1;
     private prePointY: number = -1;
+
+    private moveEnd () {
+        this.prePointX = -1;
+        this.prePointY = -1;
+    }
     public collideDetection (evt: egret.TouchEvent) {
+        //刀痕
+        if (this.prePointX > 0 && this.prePointY > 0) {
+            var len = Math.floor(Math.sqrt((this.prePointY - evt.stageY) * (this.prePointY - evt.stageY) + (this.prePointX - evt.stageX) * (this.prePointX - evt.stageX)));
+            var theta = Math.atan((evt.stageY - this.prePointY) / (evt.stageX - this.prePointX)) * 57.3;
+            if (this.prePointX > evt.stageX) {
+                var scar = new egret.Shape();
+                scar.graphics.lineStyle(8, 0xdddec5);
+                scar.graphics.moveTo(0, 0);
+                scar.graphics.lineTo(len, 0);
+                scar.graphics.endFill();
+            } else {
+                var scar = new egret.Shape();
+                scar.graphics.lineStyle(9, 0xdddec5);
+                scar.graphics.moveTo(0, 0);
+                scar.graphics.lineTo(-len, 0);
+                scar.graphics.endFill();
+            }
+            scar.x = evt.stageX;
+            scar.y = evt.stageY;
+            scar.anchorOffsetX = 4.5;
+            scar.rotation = theta;
+            this.parent.addChild(scar);
+            var tw_scar = egret.Tween.get(scar).to({scaleY: 0}, 300).call(function () {
+                this.parent.removeChild(scar);
+                scar = null;
+            });
+        }
         for (var i = 0; i < this.fruitNum; i++) {
             if (!this.fruitArray[i].cutIndex) {
                 var isCollid = this.fruitArray[i].hitTestPoint(evt.stageX, evt.stageY, true);
