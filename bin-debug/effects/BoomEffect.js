@@ -27,6 +27,7 @@ var BoomEffect = (function (_super) {
         _this.init();
         _this.getLightRotation();
         _this.getOrder();
+        _this.addBoomSound();
         _this.addLight();
         _this.addWhiteBg();
         return _this;
@@ -42,6 +43,13 @@ var BoomEffect = (function (_super) {
         for (var i = 0; i < this.lightNum; i++) {
             this.lightRotation.push(Math.random() * lightGap * 0.5 + lightGap * 0.25 + lightGap * i);
         }
+    };
+    /**
+     * 添加爆炸音效
+     */
+    BoomEffect.prototype.addBoomSound = function () {
+        var soundBoom = RES.getRes("boom_mp3");
+        var channelBoom = soundBoom.play(0, 1);
     };
     BoomEffect.prototype.getOrder = function () {
         var lightRotationCopy = [];

@@ -22,12 +22,20 @@ var FruitHomePage = (function (_super) {
         _this.init();
         return _this;
     }
+    /**
+     * 初始化
+     */
     FruitHomePage.prototype.init = function () {
         // 添加初始动画
         this.addEffects();
+        // 添加事件
         this.addEvents();
+        // 添加背景音乐
+        this.addBgSound();
     };
-    // 添加初始动画
+    /**
+     * 添加初始动画
+     */
     FruitHomePage.prototype.addEffects = function () {
         // 动画时间
         var duration_headerBg = 700;
@@ -68,6 +76,9 @@ var FruitHomePage = (function (_super) {
             this.addChild(sparkle);
         }, this, duration_headerBg + duration_headerTitle + duration_content);
     };
+    /**
+     * 添加触摸事件
+     */
     FruitHomePage.prototype.addEvents = function () {
         this.contentNewGame.touchEnabled = true;
         this.contentNewGame.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
@@ -82,12 +93,25 @@ var FruitHomePage = (function (_super) {
             Observer.getInstance().fire(Commands.OPEN_QUIT);
         }, this);
     };
+    /**
+     * 添加背景音乐
+     */
+    FruitHomePage.prototype.addBgSound = function () {
+        var soundBg = RES.getRes("menu_mp3");
+        this.channelBg = soundBg.play(0, 0);
+    };
+    /**
+     * 单例模式取单例
+     */
     FruitHomePage.getInstance = function () {
         if (this._instance === undefined) {
             this._instance = new FruitHomePage();
         }
         return this._instance;
     };
+    /**
+     * 销毁单例
+     */
     FruitHomePage.destroyInstance = function () {
         this._instance = undefined;
     };

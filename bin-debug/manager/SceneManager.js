@@ -18,6 +18,7 @@ var SceneManager = (function () {
     };
     SceneManager.prototype.openNewGame = function () {
         var fruithomePage = FruitHomePage.getInstance();
+        fruithomePage.channelBg.stop();
         var dur = 500;
         this.disappearHomePage(fruithomePage, dur);
         egret.setTimeout(function () {
@@ -30,9 +31,12 @@ var SceneManager = (function () {
     };
     SceneManager.prototype.closeNewGame = function () {
         var fruitNewGamePage = FruitNewGamePage.getInstance();
-        var dur = 500;
+        var soundStart = RES.getRes("over_mp3");
+        var channelStart = soundStart.play(0, 1);
+        var dur = 1000;
         this.disappearNewGamePage(fruitNewGamePage, dur);
         egret.setTimeout(function () {
+            channelStart.stop();
             var parentNode = fruitNewGamePage.parent;
             parentNode.removeChild(fruitNewGamePage);
             FruitNewGamePage.destroyInstance();
@@ -42,6 +46,7 @@ var SceneManager = (function () {
     };
     SceneManager.prototype.openJodo = function () {
         var fruithomePage = FruitHomePage.getInstance();
+        fruithomePage.channelBg.stop();
         var dur = 500;
         this.disappearHomePage(fruithomePage, dur);
         egret.setTimeout(function () {
@@ -66,6 +71,7 @@ var SceneManager = (function () {
     };
     SceneManager.prototype.openQuit = function () {
         var fruithomePage = FruitHomePage.getInstance();
+        fruithomePage.channelBg.stop();
         var dur = 500;
         this.disappearHomePage(fruithomePage, dur);
         egret.setTimeout(function () {

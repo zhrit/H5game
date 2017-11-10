@@ -9,6 +9,9 @@ class GameContainer extends egret.DisplayObjectContainer {
     private fruitNum: number;
     private fruitArray;
 
+    private moveCount: number = 0;//记录鼠标移动事件触发次数
+    private hasThrow: boolean = false;//是否触发挥刀音效
+
     constructor () {
         super();
         this.init();
@@ -51,8 +54,16 @@ class GameContainer extends egret.DisplayObjectContainer {
     private moveEnd () {
         this.prePointX = -1;
         this.prePointY = -1;
+        this.moveCount = 0;
+        this.hasThrow = false;
     }
     public collideDetection (evt: egret.TouchEvent) {
+        this.moveCount++;
+        if (!this.hasThrow && this.moveCount > 10) {
+            var soundThrow: egret.Sound = RES.getRes("throw_mp3");
+            var channelThrow = soundThrow.play(0, 1);
+            this.hasThrow = true;
+        }
         //刀痕
         if (this.prePointX > 0 && this.prePointY > 0) {
             var len = Math.floor(Math.sqrt((this.prePointY - evt.stageY) * (this.prePointY - evt.stageY) + (this.prePointX - evt.stageX) * (this.prePointX - evt.stageX)));

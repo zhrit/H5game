@@ -24,13 +24,23 @@ class FruitHomePage extends eui.Component {
     public ringQuit: eui.Image;
     public contentTip: eui.Image;
 
+    public channelBg: egret.SoundChannel;
+
+    /**
+     * 初始化
+     */
     private init () {
         // 添加初始动画
         this.addEffects();
+        // 添加事件
         this.addEvents();
+        // 添加背景音乐
+        this.addBgSound();
     }
 
-    // 添加初始动画
+    /**
+     * 添加初始动画
+     */
     private addEffects() {
         // 动画时间
         var duration_headerBg = 700;
@@ -75,6 +85,9 @@ class FruitHomePage extends eui.Component {
         }, this, duration_headerBg + duration_headerTitle + duration_content);
     }
 
+    /**
+     * 添加触摸事件
+     */
     private addEvents() {
         this.contentNewGame.touchEnabled = true;
         this.contentNewGame.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
@@ -92,13 +105,27 @@ class FruitHomePage extends eui.Component {
         }, this)
     }
 
+    /**
+     * 添加背景音乐
+     */
+    private addBgSound () {
+        var soundBg: egret.Sound = RES.getRes("menu_mp3");
+        this.channelBg = soundBg.play(0, 0);
+    }
+
+    /**
+     * 单例模式取单例
+     */
     public static getInstance () {
         if (this._instance === undefined) {
             this._instance = new FruitHomePage();
         }
         return this._instance;
     }
-
+    
+    /**
+     * 销毁单例
+     */
     public static destroyInstance() {
         this._instance = undefined;
     }

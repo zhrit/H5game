@@ -25,6 +25,8 @@ var FruitNewGamePage = (function (_super) {
     FruitNewGamePage.prototype.init = function () {
         // 添加初始动画
         this.addEffects();
+        // 添加开始音效
+        this.addStartSound();
         // 初始化数据
         this.scoreCount = this.failedCount = 0;
         // 添加游戏容器
@@ -44,6 +46,13 @@ var FruitNewGamePage = (function (_super) {
         var tw_gameScoreIcon = egret.Tween.get(this.gameScoreIcon).to({ x: 11 }, duration_game, egret.Ease.backOut);
         var tw_gameScore = egret.Tween.get(this.gameScore).to({ x: 58 }, duration_game, egret.Ease.backOut);
         var tw_gameBestScore = egret.Tween.get(this.gameBestScore).to({ x: 9 }, duration_game, egret.Ease.backOut);
+    };
+    /**
+     * 添加开始游戏音效
+     */
+    FruitNewGamePage.prototype.addStartSound = function () {
+        var soundStart = RES.getRes("start_mp3");
+        var channelStart = soundStart.play(0, 1);
     };
     FruitNewGamePage.getInstance = function () {
         if (this._instance === undefined) {

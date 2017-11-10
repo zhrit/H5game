@@ -22,6 +22,7 @@ class BoomEffect extends egret.DisplayObjectContainer {
         this.init();
         this.getLightRotation();
         this.getOrder();
+        this.addBoomSound();
         this.addLight();
         this.addWhiteBg();
     }
@@ -38,6 +39,14 @@ class BoomEffect extends egret.DisplayObjectContainer {
         for (var i = 0; i < this.lightNum; i++) {
             this.lightRotation.push(Math.random() * lightGap * 0.5 + lightGap * 0.25 + lightGap * i);
         }
+    }
+
+    /**
+     * 添加爆炸音效
+     */
+    private addBoomSound () {
+        var soundBoom: egret.Sound = RES.getRes("boom_mp3");
+        var channelBoom = soundBoom.play(0, 1);
     }
 
     private getOrder () {

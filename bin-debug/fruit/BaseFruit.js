@@ -64,6 +64,7 @@ var BaseFruit = (function (_super) {
         this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.cutFruit, this);
         this.cutIndex = true;
         this.splitEffect();
+        this.addCutSound();
         this.cutEffect();
         this.splashEffectFun();
         this.addScore();
@@ -83,6 +84,10 @@ var BaseFruit = (function (_super) {
             this.removeChild(this.splitBitmap);
             this.splitBitmap = null;
         }, this);
+    };
+    BaseFruit.prototype.addCutSound = function () {
+        var soundCut = RES.getRes("splatter_mp3");
+        var channelCut = soundCut.play(0, 1);
     };
     BaseFruit.prototype.cutEffect = function () {
         this.removeChild(this.img);

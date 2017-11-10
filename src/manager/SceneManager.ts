@@ -18,6 +18,7 @@ class SceneManager {
 
     private openNewGame () {
         var fruithomePage = FruitHomePage.getInstance();
+        fruithomePage.channelBg.stop();
         var dur = 500;
         this.disappearHomePage(fruithomePage, dur);
         egret.setTimeout(function () {
@@ -31,9 +32,12 @@ class SceneManager {
 
     private closeNewGame () {
         var fruitNewGamePage = FruitNewGamePage.getInstance();
-        var dur = 500;
+        var soundStart: egret.Sound = RES.getRes("over_mp3");
+        var channelStart = soundStart.play(0, 1);
+        var dur = 1000;
         this.disappearNewGamePage(fruitNewGamePage, dur);
         egret.setTimeout(function () {
+            channelStart.stop();
             var parentNode = fruitNewGamePage.parent;
             parentNode.removeChild(fruitNewGamePage);
             FruitNewGamePage.destroyInstance();
@@ -44,6 +48,7 @@ class SceneManager {
 
     private openJodo () {
         var fruithomePage = FruitHomePage.getInstance();
+        fruithomePage.channelBg.stop();
         var dur = 500;
         this.disappearHomePage(fruithomePage, dur);
         egret.setTimeout(function () {
@@ -70,6 +75,7 @@ class SceneManager {
 
     private openQuit () {
         var fruithomePage = FruitHomePage.getInstance();
+        fruithomePage.channelBg.stop();
         var dur = 500;
         this.disappearHomePage(fruithomePage, dur);
         egret.setTimeout(function () {

@@ -33,16 +33,15 @@ class FruitNewGamePage extends eui.Component {
     private init () {
         // 添加初始动画
         this.addEffects();
-
+        // 添加开始音效
+        this.addStartSound();
         // 初始化数据
         this.scoreCount = this.failedCount = 0;
-
         // 添加游戏容器
         this.gameContainer = GameContainer.getInstance();
         this.gameContainer.width = this.width;
         this.gameContainer.height = this.height;
         this.addChild(this.gameContainer);
-
         // 启动游戏管理器
         this.gameManeger = new GameManager();
     }
@@ -58,6 +57,14 @@ class FruitNewGamePage extends eui.Component {
         var tw_gameScoreIcon = egret.Tween.get(this.gameScoreIcon).to({x: 11}, duration_game, egret.Ease.backOut);
         var tw_gameScore = egret.Tween.get(this.gameScore).to({x: 58}, duration_game, egret.Ease.backOut);
         var tw_gameBestScore = egret.Tween.get(this.gameBestScore).to({x: 9}, duration_game, egret.Ease.backOut);
+    }
+
+    /**
+     * 添加开始游戏音效
+     */
+    private addStartSound () {
+        var soundStart: egret.Sound = RES.getRes("start_mp3");
+        var channelStart = soundStart.play(0, 1);
     }
 
     public static getInstance () {

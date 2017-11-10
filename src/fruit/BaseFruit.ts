@@ -90,6 +90,8 @@ class BaseFruit extends egret.DisplayObjectContainer {
 
         this.splitEffect();
 
+        this.addCutSound();
+
         this.cutEffect();
         
         this.splashEffectFun();
@@ -113,6 +115,11 @@ class BaseFruit extends egret.DisplayObjectContainer {
             this.removeChild(this.splitBitmap);
             this.splitBitmap = null;
         }, this);
+    }
+
+    private addCutSound () {
+        var soundCut: egret.Sound = RES.getRes("splatter_mp3");
+        var channelCut = soundCut.play(0, 1);
     }
 
     private cutEffect() {
