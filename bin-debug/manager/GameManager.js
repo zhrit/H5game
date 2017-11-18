@@ -45,4 +45,3 @@ var GameManager = (function () {
     return GameManager;
 }());
 __reflect(GameManager.prototype, "GameManager");
-//# sourceMappingURL=GameManager.js.map

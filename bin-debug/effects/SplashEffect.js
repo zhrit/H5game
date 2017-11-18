@@ -64,4 +64,3 @@ var Splash = (function (_super) {
     return Splash;
 }(egret.Shape));
 __reflect(Splash.prototype, "Splash");
-//# sourceMappingURL=SplashEffect.js.map

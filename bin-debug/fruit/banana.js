@@ -30,4 +30,3 @@ var Banana = (function (_super) {
     return Banana;
 }(BaseFruit));
 __reflect(Banana.prototype, "Banana");
-//# sourceMappingURL=banana.js.map

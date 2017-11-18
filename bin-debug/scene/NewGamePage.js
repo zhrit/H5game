@@ -66,4 +66,3 @@ var FruitNewGamePage = (function (_super) {
     return FruitNewGamePage;
 }(eui.Component));
 __reflect(FruitNewGamePage.prototype, "FruitNewGamePage");
-//# sourceMappingURL=NewGamePage.js.map

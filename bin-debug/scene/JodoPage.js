@@ -50,4 +50,3 @@ var FruitJodoPage = (function (_super) {
     return FruitJodoPage;
 }(eui.Component));
 __reflect(FruitJodoPage.prototype, "FruitJodoPage");
-//# sourceMappingURL=JodoPage.js.map

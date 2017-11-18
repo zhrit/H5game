@@ -31,4 +31,3 @@ var Scar = (function (_super) {
     return Scar;
 }(eui.Component));
 __reflect(Scar.prototype, "Scar");
-//# sourceMappingURL=Scar.js.map

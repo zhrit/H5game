@@ -28,4 +28,3 @@ var BaseScene = (function (_super) {
     return BaseScene;
 }(eui.Component));
 __reflect(BaseScene.prototype, "BaseScene");
-//# sourceMappingURL=BaseScene.js.map

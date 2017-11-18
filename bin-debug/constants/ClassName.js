@@ -17,4 +17,3 @@ var ClassName = (function () {
     return ClassName;
 }());
 __reflect(ClassName.prototype, "ClassName");
-//# sourceMappingURL=ClassName.js.map

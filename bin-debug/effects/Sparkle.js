@@ -63,4 +63,3 @@ var Sparkle = (function (_super) {
     return Sparkle;
 }(eui.Component));
 __reflect(Sparkle.prototype, "Sparkle");
-//# sourceMappingURL=Sparkle.js.map

@@ -134,4 +134,3 @@ var BaseFruit = (function (_super) {
     return BaseFruit;
 }(egret.DisplayObjectContainer));
 __reflect(BaseFruit.prototype, "BaseFruit");
-//# sourceMappingURL=BaseFruit.js.map

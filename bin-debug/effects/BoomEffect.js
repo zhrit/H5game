@@ -108,4 +108,3 @@ var BoomEffect = (function (_super) {
     return BoomEffect;
 }(egret.DisplayObjectContainer));
 __reflect(BoomEffect.prototype, "BoomEffect");
-//# sourceMappingURL=BoomEffect.js.map
