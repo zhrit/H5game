@@ -21,6 +21,9 @@ var BaseFruit = (function (_super) {
         _this.init();
         return _this;
     }
+    /**
+     * 初始化水果的基本属性，添加时间和动画
+     */
     BaseFruit.prototype.init = function () {
         this.img = new egret.Bitmap();
         this.img_part1 = new egret.Bitmap();
@@ -40,6 +43,10 @@ var BaseFruit = (function (_super) {
         this.addEventListener(egret.TouchEvent.TOUCH_TAP, this.cutFruit, this);
         this.cutIndex = false;
     };
+    /**
+     * 自由落体位置计算
+     * @param evt
+     */
     BaseFruit.prototype.freeFalling = function (evt) {
         var now = (egret.getTimer() - this.beginTime) / 1000;
         this.x = this.initX + now * this.speedX;
@@ -50,6 +57,9 @@ var BaseFruit = (function (_super) {
             this.cutIndex = true;
         }
     };
+    /**
+     * 设置水果的属性
+     */
     BaseFruit.prototype.setSize = function () {
         this.anchorOffsetX = this.width / 2;
         this.anchorOffsetY = this.height / 2;
@@ -60,13 +70,21 @@ var BaseFruit = (function (_super) {
         this.img_part2.anchorOffsetX = this.img.width / 2;
         this.img_part2.anchorOffsetY = this.img.height / 2;
     };
+    /**
+     * 切开水果后的动作
+     */
     BaseFruit.prototype.cutFruit = function () {
         this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.cutFruit, this);
         this.cutIndex = true;
+        /* 切开水果的刀光动画 */
         this.splitEffect();
+        /* 添加音效 */
         this.addCutSound();
+        /* 水果一分为二 */
         this.cutEffect();
+        /* 果汁溅射动画 */
         this.splashEffectFun();
+        /* 游戏逻辑，分数加一 */
         this.addScore();
     };
     BaseFruit.prototype.splitEffect = function () {
@@ -85,16 +103,25 @@ var BaseFruit = (function (_super) {
             this.splitBitmap = null;
         }, this);
     };
+    /**
+     * 添加音效
+     */
     BaseFruit.prototype.addCutSound = function () {
         var soundCut = RES.getRes("splatter_mp3");
         var channelCut = soundCut.play(0, 1);
     };
+    /**
+     * 水果一分为二
+     */
     BaseFruit.prototype.cutEffect = function () {
         this.removeChild(this.img);
         this.addChild(this.img_part1);
         this.addChild(this.img_part2);
         this.addEventListener(egret.Event.ENTER_FRAME, this.cutFreeFalling, this);
     };
+    /**
+     * 果汁溅射动画
+     */
     BaseFruit.prototype.splashEffectFun = function () {
         if (this.splashColor) {
             this.splashEffect = new SplashEffect(this.splashColor);
@@ -106,15 +133,24 @@ var BaseFruit = (function (_super) {
             }, this, 400);
         }
     };
+    /**
+     * 被切开的水果的位置
+     */
     BaseFruit.prototype.cutFreeFalling = function () {
         this.img_part1.x -= 2;
         this.img_part2.x += 2;
         this.img_part1.rotation -= 2;
         this.img_part2.rotation += 2;
     };
+    /**
+     * 积分
+     */
     BaseFruit.prototype.addScore = function () {
         Observer.getInstance().fire(Commands.ADD_SCORE);
     };
+    /**
+     * 结束
+     */
     BaseFruit.prototype.addFailed = function () {
         var self = this;
         var loseLogo = new egret.Bitmap();
@@ -134,3 +170,4 @@ var BaseFruit = (function (_super) {
     return BaseFruit;
 }(egret.DisplayObjectContainer));
 __reflect(BaseFruit.prototype, "BaseFruit");
+//# sourceMappingURL=BaseFruit.js.map

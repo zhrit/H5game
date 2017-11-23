@@ -23,6 +23,9 @@ var Boom = (function (_super) {
         return _this;
     }
     Boom.prototype.addFailed = function () { };
+    /**
+     * 重写切开后的动作
+     */
     Boom.prototype.cutFruit = function () {
         this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.cutFruit, this);
         this.cutIndex = true;
@@ -35,8 +38,8 @@ var Boom = (function (_super) {
         GameContainer.getInstance().addChild(boomEffect);
         GameContainer.getInstance().addChild(this);
         this.removeEventListener(egret.Event.ENTER_FRAME, this.freeFalling, this);
-        // Observer.getInstance().fire(Commands.GAME_OVER);
     };
     return Boom;
 }(BaseFruit));
 __reflect(Boom.prototype, "Boom");
+//# sourceMappingURL=boom.js.map

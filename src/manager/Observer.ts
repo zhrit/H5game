@@ -10,6 +10,12 @@ class Observer {
         this._messages = [];
     }
 
+    /**
+     * 注册命令
+     * @param commandKey 
+     * @param fn 
+     * @param content 
+     */
     public regist (commandKey, fn, content) {
         var fn_con = {
             fn: fn,
@@ -22,6 +28,11 @@ class Observer {
         }
     }
 
+    /**
+     * 触发命令
+     * @param commandKey 
+     * @param args 
+     */
     public fire (commandKey, args) {
         if (!this._messages[commandKey]){
             return;
@@ -35,6 +46,12 @@ class Observer {
         }
     }
 
+    /**
+     * 移除命令
+     * @param commandKey 
+     * @param fn 
+     * @param content 
+     */
     public remove (commandKey, fn, content) {
         var fn_con = {
             fn: fn,

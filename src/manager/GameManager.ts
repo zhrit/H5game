@@ -7,18 +7,27 @@ class GameManager {
         this.registObserver();
     }
 
+    /**
+     * 注册命令
+     */
     private registObserver () {
         Observer.getInstance().regist(Commands.ADD_SCORE, this.addScore, this);
         Observer.getInstance().regist(Commands.ADD_FAILED, this.addFailed, this);
         Observer.getInstance().regist(Commands.GAME_OVER, this.gameOver, this);
     }
 
+    /**
+     * 分数加一
+     */
     private addScore () {
         var fruitNewGamePage = FruitNewGamePage.getInstance();
         fruitNewGamePage.scoreCount += 1;
         fruitNewGamePage.gameScore.text = String(fruitNewGamePage.scoreCount);
     }
 
+    /**
+     * 失败次数加一
+     */
     private addFailed () {
         var fruitNewGamePage = FruitNewGamePage.getInstance();
         fruitNewGamePage.failedCount += 1;
@@ -32,6 +41,9 @@ class GameManager {
         }
     }
 
+    /**
+     * 游戏结束
+     */
     private gameOver () {
         var gameContainer = GameContainer.getInstance();
         gameContainer.timer.stop();

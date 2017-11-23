@@ -8,16 +8,25 @@ var GameManager = (function () {
     function GameManager() {
         this.registObserver();
     }
+    /**
+     * 注册命令
+     */
     GameManager.prototype.registObserver = function () {
         Observer.getInstance().regist(Commands.ADD_SCORE, this.addScore, this);
         Observer.getInstance().regist(Commands.ADD_FAILED, this.addFailed, this);
         Observer.getInstance().regist(Commands.GAME_OVER, this.gameOver, this);
     };
+    /**
+     * 分数加一
+     */
     GameManager.prototype.addScore = function () {
         var fruitNewGamePage = FruitNewGamePage.getInstance();
         fruitNewGamePage.scoreCount += 1;
         fruitNewGamePage.gameScore.text = String(fruitNewGamePage.scoreCount);
     };
+    /**
+     * 失败次数加一
+     */
     GameManager.prototype.addFailed = function () {
         var fruitNewGamePage = FruitNewGamePage.getInstance();
         fruitNewGamePage.failedCount += 1;
@@ -32,6 +41,9 @@ var GameManager = (function () {
             Observer.getInstance().fire(Commands.GAME_OVER);
         }
     };
+    /**
+     * 游戏结束
+     */
     GameManager.prototype.gameOver = function () {
         var gameContainer = GameContainer.getInstance();
         gameContainer.timer.stop();
@@ -45,3 +57,4 @@ var GameManager = (function () {
     return GameManager;
 }());
 __reflect(GameManager.prototype, "GameManager");
+//# sourceMappingURL=GameManager.js.map

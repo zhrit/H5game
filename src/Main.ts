@@ -152,17 +152,8 @@ class Main extends eui.UILayer {
     protected startCreateScene(): void {
         this.stage.frameRate = 240;
         this.fruithomePage = FruitHomePage.getInstance();
-        //this.fruitNewGamePage = new FruitNewGamePage();
-        //this.fruitJodoPage = new FruitJodoPage();
-        //this.fruitQuitPage = new FruitQuitPage();
 
         this.addChild(this.fruithomePage);
-
         this.sceneManager = new SceneManager();
-        //this.addChild(this.fruitNewGamePage);
-        //this.addChild(this.fruitJodoPage);
-        //this.addChild(this.fruitQuitPage);
-        
-        // this.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.showScar, this);
     }
 }

@@ -11,6 +11,9 @@ class Boom extends BaseFruit {
 
     public addFailed () {}
 
+    /**
+     * 重写切开后的动作
+     */
     public cutFruit () {
         this.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.cutFruit, this);
 
@@ -27,6 +30,5 @@ class Boom extends BaseFruit {
         GameContainer.getInstance().addChild(this);
         
         this.removeEventListener(egret.Event.ENTER_FRAME, this.freeFalling, this);
-        // Observer.getInstance().fire(Commands.GAME_OVER);
     }
 }

@@ -18,13 +18,6 @@ class GameContainer extends egret.DisplayObjectContainer {
     }
 
     private init() {
-        // var bg: egret.Bitmap = new egret.Bitmap();
-        // bg.x = bg.y = 0;
-        // bg.width = this.width;
-        // bg.height = this.height;
-        // bg.alpha = 0;
-        // bg.touchEnabled = true;
-        // this.addChild(bg);
         //抛水果
         this.timer = new egret.Timer(2100,0);
         this.timer.addEventListener(egret.TimerEvent.TIMER, this.popupFruit, this);
@@ -37,6 +30,9 @@ class GameContainer extends egret.DisplayObjectContainer {
         }, this, 2100);
     }
 
+    /**
+     * 抛水果
+     */
     private popupFruit () {
         this.fruitNum = Math.ceil(Math.random() * 3);
         this.fruitArray = [];
@@ -57,6 +53,11 @@ class GameContainer extends egret.DisplayObjectContainer {
         this.moveCount = 0;
         this.hasThrow = false;
     }
+
+    /**
+     * 碰撞检测并添加刀痕
+     * @param evt 
+     */
     public collideDetection (evt: egret.TouchEvent) {
         this.moveCount++;
         if (!this.hasThrow && this.moveCount > 10) {

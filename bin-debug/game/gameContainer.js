@@ -26,13 +26,6 @@ var GameContainer = (function (_super) {
         return _this;
     }
     GameContainer.prototype.init = function () {
-        // var bg: egret.Bitmap = new egret.Bitmap();
-        // bg.x = bg.y = 0;
-        // bg.width = this.width;
-        // bg.height = this.height;
-        // bg.alpha = 0;
-        // bg.touchEnabled = true;
-        // this.addChild(bg);
         //抛水果
         this.timer = new egret.Timer(2100, 0);
         this.timer.addEventListener(egret.TimerEvent.TIMER, this.popupFruit, this);
@@ -44,6 +37,9 @@ var GameContainer = (function (_super) {
             this.parent.addEventListener(egret.TouchEvent.TOUCH_END, this.moveEnd, this);
         }, this, 2100);
     };
+    /**
+     * 抛水果
+     */
     GameContainer.prototype.popupFruit = function () {
         this.fruitNum = Math.ceil(Math.random() * 3);
         this.fruitArray = [];
@@ -60,6 +56,10 @@ var GameContainer = (function (_super) {
         this.moveCount = 0;
         this.hasThrow = false;
     };
+    /**
+     * 碰撞检测并添加刀痕
+     * @param evt
+     */
     GameContainer.prototype.collideDetection = function (evt) {
         this.moveCount++;
         if (!this.hasThrow && this.moveCount > 10) {
@@ -138,3 +138,4 @@ var GameContainer = (function (_super) {
     return GameContainer;
 }(egret.DisplayObjectContainer));
 __reflect(GameContainer.prototype, "GameContainer");
+//# sourceMappingURL=gameContainer.js.map

@@ -8,6 +8,12 @@ var Observer = (function () {
     function Observer() {
         this._messages = [];
     }
+    /**
+     * 注册命令
+     * @param commandKey
+     * @param fn
+     * @param content
+     */
     Observer.prototype.regist = function (commandKey, fn, content) {
         var fn_con = {
             fn: fn,
@@ -20,6 +26,11 @@ var Observer = (function () {
             this._messages[commandKey].push(fn_con);
         }
     };
+    /**
+     * 触发命令
+     * @param commandKey
+     * @param args
+     */
     Observer.prototype.fire = function (commandKey, args) {
         if (!this._messages[commandKey]) {
             return;
@@ -32,6 +43,12 @@ var Observer = (function () {
             this._messages[commandKey][i].fn.call(this._messages[commandKey][i].content, events);
         }
     };
+    /**
+     * 移除命令
+     * @param commandKey
+     * @param fn
+     * @param content
+     */
     Observer.prototype.remove = function (commandKey, fn, content) {
         var fn_con = {
             fn: fn,
@@ -52,3 +69,4 @@ var Observer = (function () {
     return Observer;
 }());
 __reflect(Observer.prototype, "Observer");
+//# sourceMappingURL=Observer.js.map

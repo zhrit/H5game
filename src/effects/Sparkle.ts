@@ -21,20 +21,24 @@ class Sparkle extends eui.Component {
         this.start();
     }
 
+    /**
+     * 设置火花特效的时间驱动
+     */
     private start () {
         this.sparkleTimer = new egret.Timer(this.emission, 0);
         this.sparkleTimer.addEventListener(egret.TimerEvent.TIMER,this.timerFunc,this);
         this.sparkleTimer.start();
     }
 
+    /**
+     * 创建粒子并添加到舞台
+     */
     private timerFunc () {
-        // 创建粒子
         this.addChild(this.creatParticle());
-        // 粒子运动
-        // 删除粒子
     }
 
     private creatParticle () {
+        /* 生成火花 */
         var singleParticle: eui.Image = new eui.Image();
         singleParticle.source = "flash_png";
         singleParticle.width = 25;
@@ -46,6 +50,7 @@ class Sparkle extends eui.Component {
         singleParticle.rotation = Math.random() * 360;
         var theta = singleParticle.rotation / 180 * Math.PI;
 
+        /* 为每个火花添加动画，动画执行完毕后从舞台中移除 */
         egret.Tween.get(singleParticle).to({
             x: this.emitterX * (Math.cos(theta) + 1),
             y: this.emitterX * (Math.sin(theta) + 1),

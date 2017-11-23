@@ -147,16 +147,10 @@ var Main = (function (_super) {
     Main.prototype.startCreateScene = function () {
         this.stage.frameRate = 240;
         this.fruithomePage = FruitHomePage.getInstance();
-        //this.fruitNewGamePage = new FruitNewGamePage();
-        //this.fruitJodoPage = new FruitJodoPage();
-        //this.fruitQuitPage = new FruitQuitPage();
         this.addChild(this.fruithomePage);
         this.sceneManager = new SceneManager();
-        //this.addChild(this.fruitNewGamePage);
-        //this.addChild(this.fruitJodoPage);
-        //this.addChild(this.fruitQuitPage);
-        // this.stage.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.showScar, this);
     };
     return Main;
 }(eui.UILayer));
 __reflect(Main.prototype, "Main");
+//# sourceMappingURL=Main.js.map

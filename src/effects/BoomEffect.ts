@@ -3,12 +3,12 @@
  */
 class BoomEffect extends egret.DisplayObjectContainer {
 
-    private lightNum: number = 8;
-    private lightRotation: number[] = [];
-    private lightRotationOrder: number[] = [];
-    private lightArray: egret.Shape[];
-    private timer;
-    private fruitObj;
+    private lightNum: number = 8;               //光线数量
+    private lightRotation: number[] = [];       //光线的角度
+    private lightRotationOrder: number[] = [];  //光线出现的顺序
+    private lightArray: egret.Shape[];          //光线显示对象
+    private timer;                              //setTimeOut对象
+    private fruitObj;                           //被切到的炸弹
 
     private index: number;
 
@@ -27,6 +27,9 @@ class BoomEffect extends egret.DisplayObjectContainer {
         this.addWhiteBg();
     }
 
+    /**
+     * 初始化
+     */
     private init () {
         this.width = 1280;
         this.height = 960;
@@ -34,6 +37,9 @@ class BoomEffect extends egret.DisplayObjectContainer {
         this.anchorOffsetY = 480;
     }
 
+    /**
+     * 随机获取爆炸光线的角度
+     */
     private getLightRotation () {
         var lightGap = 360 / this.lightNum;
         for (var i = 0; i < this.lightNum; i++) {
@@ -49,6 +55,9 @@ class BoomEffect extends egret.DisplayObjectContainer {
         var channelBoom = soundBoom.play(0, 1);
     }
 
+    /**
+     * 随机设置爆炸光线出现的先后顺序
+     */
     private getOrder () {
         var lightRotationCopy:number[] = [];
         for (var i = 0; i < this.lightNum; i++) {
@@ -62,6 +71,9 @@ class BoomEffect extends egret.DisplayObjectContainer {
         }
     }
 
+    /**
+     * 将爆炸光线添加到舞台
+     */
     private addLight () {
         if (this.timer) {
             egret.clearTimeout(this.timer);
@@ -75,6 +87,9 @@ class BoomEffect extends egret.DisplayObjectContainer {
         }
     }
 
+    /**
+     * 用shape画梯形模拟爆炸光线
+     */
     private createLight () {
         var boomLight: egret.Shape = new egret.Shape();
         boomLight.graphics.beginFill(0xffffe9, 1);
@@ -90,6 +105,9 @@ class BoomEffect extends egret.DisplayObjectContainer {
         return boomLight;
     }
 
+    /**
+     * 爆炸光线出现完毕后的闪光效果（屏幕全白闪一下）
+     */
     private addWhiteBg () {
         var whiteBg: egret.Shape = new egret.Shape();
         whiteBg.graphics.beginFill(0xffffff, 1);

@@ -22,6 +22,9 @@ var SplashEffect = (function (_super) {
         _this.start();
         return _this;
     }
+    /**
+     * 添加水花粒子
+     */
     SplashEffect.prototype.start = function () {
         for (var i = 0; i < 10; i++) {
             var radius = Math.random() * 2 + 4;
@@ -34,6 +37,9 @@ var SplashEffect = (function (_super) {
     return SplashEffect;
 }(egret.DisplayObjectContainer));
 __reflect(SplashEffect.prototype, "SplashEffect");
+/**
+ * 水花粒子
+ */
 var Splash = (function (_super) {
     __extends(Splash, _super);
     function Splash(radius, speed, direction, splashColor) {
@@ -45,6 +51,7 @@ var Splash = (function (_super) {
         _this.init();
         _this.initX = _this.x;
         _this.initY = _this.y;
+        /* 改变水花大小的缓动动画 */
         var tw_splash = egret.Tween.get(_this).to({ scaleX: 0.5, scaleY: 0.5 }, 390).call(function () {
             this.removeEventListener(egret.Event.ENTER_FRAME, this.updateLocation, this);
         });
@@ -52,11 +59,17 @@ var Splash = (function (_super) {
         _this.addEventListener(egret.Event.ENTER_FRAME, _this.updateLocation, _this);
         return _this;
     }
+    /**
+     * 小圆点模拟水花
+     */
     Splash.prototype.init = function () {
         this.graphics.beginFill(this.splashColor, 1);
         this.graphics.drawCircle(0, 0, this.radius);
         this.graphics.endFill();
     };
+    /**
+     * 实时计算位置
+     */
     Splash.prototype.updateLocation = function () {
         this.x = this.initX + this.speed * (egret.getTimer() - this.beginTime) / 1000 * Math.cos(this.direction / 57.3);
         this.y = this.initY - this.speed * (egret.getTimer() - this.beginTime) / 1000 * Math.sin(this.direction / 57.3);
@@ -64,3 +77,4 @@ var Splash = (function (_super) {
     return Splash;
 }(egret.Shape));
 __reflect(Splash.prototype, "Splash");
+//# sourceMappingURL=SplashEffect.js.map

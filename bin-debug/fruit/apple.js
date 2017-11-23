@@ -30,3 +30,4 @@ var Apple = (function (_super) {
     return Apple;
 }(BaseFruit));
 __reflect(Apple.prototype, "Apple");
+//# sourceMappingURL=apple.js.map

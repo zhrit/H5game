@@ -30,3 +30,4 @@ var Peach = (function (_super) {
     return Peach;
 }(BaseFruit));
 __reflect(Peach.prototype, "Peach");
+//# sourceMappingURL=peach.js.map

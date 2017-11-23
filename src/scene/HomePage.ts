@@ -26,6 +26,8 @@ class FruitHomePage extends eui.Component {
 
     public channelBg: egret.SoundChannel;
 
+    public sparkle: Sparkle;
+
     /**
      * 初始化
      */
@@ -78,10 +80,10 @@ class FruitHomePage extends eui.Component {
             Effects.rotate(this.ringNewGame, 30000, true, false);
             Effects.rotate(this.contentNewGame, 15000, true, false);
             Effects.rotate(this.ringQuit, 20000, true, true);
-            var sparkle = new Sparkle(30);
-            sparkle.x = this.contentQuit.x - this.contentQuit.width / 2 + 5;
-            sparkle.y = this.contentQuit.y - this.contentQuit.height /2 + 5;
-            this.addChild(sparkle);
+            this.sparkle = new Sparkle(30);
+            this.sparkle.x = this.contentQuit.x - this.contentQuit.width / 2 + 5;
+            this.sparkle.y = this.contentQuit.y - this.contentQuit.height /2 + 5;
+            this.addChild(this.sparkle);
         }, this, duration_headerBg + duration_headerTitle + duration_content);
     }
 

@@ -47,3 +47,4 @@ var Effects;
     }
     Effects.rotate = rotate;
 })(Effects || (Effects = {}));
+//# sourceMappingURL=Effects.js.map

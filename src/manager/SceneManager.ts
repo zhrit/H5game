@@ -7,6 +7,9 @@ class SceneManager {
         this.registObserver();
     }
 
+    /**
+     * 注册命令
+     */
     private registObserver () {
         Observer.getInstance().regist(Commands.OPEN_NEWGAME, this.openNewGame, this);
         Observer.getInstance().regist(Commands.CLOSE_NEWGAME, this.closeNewGame, this);
@@ -101,6 +104,7 @@ class SceneManager {
     }
 
     private disappearHomePage (fruithomePage, dur) {
+        var tw_sparkle = egret.Tween.get(fruithomePage.sparkle).to({scaleX: 0, scaleY: 0}, dur / 2);
         var tw_headerBgtween = egret.Tween.get(fruithomePage.headerBg).to({y: -183}, dur);
         var tw_headerTitle = egret.Tween.get(fruithomePage.headerTitle).to({y: -155}, dur);
         var tw_headerSubTitle = egret.Tween.get(fruithomePage.headerSubTitle).to({y: -111}, dur);

@@ -50,3 +50,4 @@ var FruitQuitPage = (function (_super) {
     return FruitQuitPage;
 }(eui.Component));
 __reflect(FruitQuitPage.prototype, "FruitQuitPage");
+//# sourceMappingURL=QuitPage.js.map
