@@ -149,6 +149,11 @@ var Main = (function (_super) {
         this.fruithomePage = FruitHomePage.getInstance();
         this.addChild(this.fruithomePage);
         this.sceneManager = new SceneManager();
+        this.gameManager = new GameManager();
+        // 添加刀痕特效
+        egret.setTimeout(function () {
+            Scar.getInstance(this.stage);
+        }, this, 100);
     };
     return Main;
 }(eui.UILayer));

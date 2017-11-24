@@ -92,17 +92,17 @@ class FruitHomePage extends eui.Component {
      */
     private addEvents() {
         this.contentNewGame.touchEnabled = true;
-        this.contentNewGame.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
+        this.contentNewGame.once(egret.TouchEvent.TOUCH_TAP, function () {
             Observer.getInstance().fire(Commands.OPEN_NEWGAME);
         }, this)
 
         this.contentDojo.touchEnabled = true;
-        this.contentDojo.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
+        this.contentDojo.once(egret.TouchEvent.TOUCH_TAP, function () {
             Observer.getInstance().fire(Commands.OPEN_JODO);
         }, this)
 
         this.contentQuit.touchEnabled = true;
-        this.contentQuit.addEventListener(egret.TouchEvent.TOUCH_TAP, function () {
+        this.contentQuit.once(egret.TouchEvent.TOUCH_TAP, function () {
             Observer.getInstance().fire(Commands.OPEN_QUIT);
         }, this)
     }

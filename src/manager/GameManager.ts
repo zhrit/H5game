@@ -44,16 +44,18 @@ class GameManager {
     /**
      * 游戏结束
      */
+    private fruitNewGamePage;
     private gameOver () {
         var gameContainer = GameContainer.getInstance();
         gameContainer.timer.stop();
 
-        var fruitNewGamePage = FruitNewGamePage.getInstance();
-        var tw_gameover = egret.Tween.get(fruitNewGamePage.gameover).to({scaleX: 1, scaleY: 1, alpha: 1}, 500, egret.Ease.backOut);
+        this.fruitNewGamePage = FruitNewGamePage.getInstance();
+        var tw_gameover = egret.Tween.get(this.fruitNewGamePage.gameover).to({scaleX: 1, scaleY: 1, alpha: 1}, 500, egret.Ease.backOut);
 
-        fruitNewGamePage.once(egret.TouchEvent.TOUCH_TAP, this.quitGamePage, this);
+        this.fruitNewGamePage.addEventListener(egret.TouchEvent.TOUCH_TAP, this.quitGamePage, this);
     }
     private quitGamePage () {
+        this.fruitNewGamePage.removeEventListener(egret.TouchEvent.TOUCH_TAP, this.quitGamePage, this);
         Observer.getInstance().fire(Commands.CLOSE_NEWGAME);
     }
 }

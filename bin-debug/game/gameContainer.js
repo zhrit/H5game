@@ -18,19 +18,17 @@ var GameContainer = (function (_super) {
     __extends(GameContainer, _super);
     function GameContainer() {
         var _this = _super.call(this) || this;
-        _this.moveCount = 0; //记录鼠标移动事件触发次数
-        _this.hasThrow = false; //是否触发挥刀音效
         _this.prePointX = -1;
         _this.prePointY = -1;
         _this.init();
         return _this;
     }
     GameContainer.prototype.init = function () {
-        //抛水果
+        // 抛水果
         this.timer = new egret.Timer(2100, 0);
         this.timer.addEventListener(egret.TimerEvent.TIMER, this.popupFruit, this);
         this.timer.start();
-        //设置触摸事件
+        // 设置触摸事件
         egret.setTimeout(function () {
             this.parent.touchEnabled = true;
             this.parent.addEventListener(egret.TouchEvent.TOUCH_MOVE, this.collideDetection, this);
@@ -53,48 +51,12 @@ var GameContainer = (function (_super) {
     GameContainer.prototype.moveEnd = function () {
         this.prePointX = -1;
         this.prePointY = -1;
-        this.moveCount = 0;
-        this.hasThrow = false;
     };
     /**
      * 碰撞检测并添加刀痕
      * @param evt
      */
     GameContainer.prototype.collideDetection = function (evt) {
-        this.moveCount++;
-        if (!this.hasThrow && this.moveCount > 10) {
-            var soundThrow = RES.getRes("throw_mp3");
-            var channelThrow = soundThrow.play(0, 1);
-            this.hasThrow = true;
-        }
-        //刀痕
-        if (this.prePointX > 0 && this.prePointY > 0) {
-            var len = Math.floor(Math.sqrt((this.prePointY - evt.stageY) * (this.prePointY - evt.stageY) + (this.prePointX - evt.stageX) * (this.prePointX - evt.stageX)));
-            var theta = Math.atan((evt.stageY - this.prePointY) / (evt.stageX - this.prePointX)) * 57.3;
-            if (this.prePointX > evt.stageX) {
-                var scar = new egret.Shape();
-                scar.graphics.lineStyle(8, 0xdddec5);
-                scar.graphics.moveTo(0, 0);
-                scar.graphics.lineTo(len, 0);
-                scar.graphics.endFill();
-            }
-            else {
-                var scar = new egret.Shape();
-                scar.graphics.lineStyle(9, 0xdddec5);
-                scar.graphics.moveTo(0, 0);
-                scar.graphics.lineTo(-len, 0);
-                scar.graphics.endFill();
-            }
-            scar.x = evt.stageX;
-            scar.y = evt.stageY;
-            scar.anchorOffsetX = 4.5;
-            scar.rotation = theta;
-            this.parent.addChild(scar);
-            var tw_scar = egret.Tween.get(scar).to({ scaleY: 0 }, 300).call(function () {
-                this.parent.removeChild(scar);
-                scar = null;
-            });
-        }
         for (var i = 0; i < this.fruitNum; i++) {
             if (!this.fruitArray[i].cutIndex) {
                 var isCollid = this.fruitArray[i].hitTestPoint(evt.stageX, evt.stageY, true);
@@ -107,6 +69,9 @@ var GameContainer = (function (_super) {
         this.prePointX = evt.stageX;
         this.prePointY = evt.stageY;
     };
+    /**
+     * 设置水果切开时闪光的方向
+     */
     GameContainer.prototype.setSplitRotation = function (curX, curY, fruit) {
         if (!fruit.splitBitmap) {
             return;

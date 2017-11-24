@@ -42,8 +42,6 @@ class FruitNewGamePage extends eui.Component {
         this.gameContainer.width = this.width;
         this.gameContainer.height = this.height;
         this.addChild(this.gameContainer);
-        // 启动游戏管理器
-        this.gameManeger = new GameManager();
     }
 
     // 添加初始动画

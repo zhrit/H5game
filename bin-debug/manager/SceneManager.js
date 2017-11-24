@@ -40,6 +40,7 @@ var SceneManager = (function () {
         this.disappearNewGamePage(fruitNewGamePage, dur);
         egret.setTimeout(function () {
             channelStart.stop();
+            console.log(2, FruitNewGamePage.getInstance().parent);
             var parentNode = fruitNewGamePage.parent;
             parentNode.removeChild(fruitNewGamePage);
             FruitNewGamePage.destroyInstance();
@@ -112,7 +113,9 @@ var SceneManager = (function () {
         var tw_contentTip = egret.Tween.get(fruithomePage.contentTip).to({ scaleX: 0, scaleY: 0 }, dur);
     };
     SceneManager.prototype.disappearNewGamePage = function (fruitNewGamePage, dur) {
+        console.log(0, FruitNewGamePage.getInstance().parent);
         GameContainer.destroyInstance();
+        console.log(1, FruitNewGamePage.getInstance().parent);
         var tw_gameX = egret.Tween.get(fruitNewGamePage.gameX).to({ x: 640 }, dur);
         var tw_gameXX = egret.Tween.get(fruitNewGamePage.gameXX).to({ x: 665 }, dur);
         var tw_gameXXX = egret.Tween.get(fruitNewGamePage.gameXXX).to({ x: 695 }, dur);

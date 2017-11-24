@@ -148,6 +148,7 @@ class Main extends eui.UILayer {
     private fruitQuitPage: FruitQuitPage;
 
     private sceneManager: SceneManager;
+    private gameManager: GameManager;
 
     protected startCreateScene(): void {
         this.stage.frameRate = 240;
@@ -155,5 +156,11 @@ class Main extends eui.UILayer {
 
         this.addChild(this.fruithomePage);
         this.sceneManager = new SceneManager();
+        this.gameManager = new GameManager();
+
+        // 添加刀痕特效
+        egret.setTimeout(function () {
+            Scar.getInstance(this.stage);
+        }, this, 100);
     }
 }
