@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<e:Skin class="QuitPage" width="640" height="480" xmlns:e="http://ns.egret.com/eui">
+<e:Image source="background_jpg" scaleX="1"/>
+
+<e:Image id="quitInfo" source="developing_png" x="320" y="240" anchorOffsetX="214.5" anchorOffsetY="26.5" scaleX="0" scaleY="0"/>
+</e:Skin>
